@@ -45,6 +45,6 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
-    "ig": "0.0.5"
+    "normalize.css": "^8.0.1"
   }
 }
