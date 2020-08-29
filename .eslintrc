@@ -10,6 +10,7 @@
   "require-jsdoc": "off",
    "semi": "off",
     "linebreak-style": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "arrow-parens": "off"
   }
 }
