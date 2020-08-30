@@ -3,19 +3,24 @@ function toChar(_, index) {
   return String.fromCharCode(index + CODED.A)
 }
 
-function toCell() {
-  return ` <div class="cell" contenteditable></div>`
+function toCell(_, i) {
+  return ` <div class="cell" contenteditable data-countC = "${i}"></div>`
 }
 
-function toColumn(char) {
-  return ` <div class="column">
+function toColumn(char, i) {
+  return ` <div class="column" data-type = "resizeble" data-countC = "${i}">
                 ${char}
+                <div class="col-resize" data-resize = "col"></div>
             </div>`
 }
 
 function createRow(index, content) {
-  return ` <div class="row">
-        <div class="row-info">${index ? index : ''}</div>
+  const resizer = index ? `<div class="row-resize" data-resize ="row"></div>`:''
+  return ` <div class="row" data-type = "resizeble" >
+        <div class="row-info" >
+        ${index ? index : ''}
+        ${resizer}
+        </div>
         <div class="row-data">${content}</div>
 </div>`
 }
