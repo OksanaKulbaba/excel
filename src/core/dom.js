@@ -36,6 +36,23 @@ class Dom {
     this.$el.appendChild(node)
     return this
   }
+  closest(selector) {
+    return $(this.$el.closest(selector))
+  }
+  getCords() {
+    return this.$el.getBoundingClientRect()
+  }
+  get data() {
+    return this.$el.dataset
+  }
+  getElementsByClassName(className) {
+    return this.$el.getElementsByClassName(className)
+  }
+
+  css(styles= {}) {
+    Object.keys(styles)
+        .forEach(key => this.$el.style[key] = styles[key])
+  }
 }
 
 export function $(selector) {
@@ -49,3 +66,4 @@ $.create = (tagName, classes = '') => {
   }
   return $(el)
 }
+
