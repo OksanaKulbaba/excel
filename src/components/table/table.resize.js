@@ -4,16 +4,9 @@ export function resizeHandler($root, event) {
   const typeResize = event.target.dataset.resize
   const $resizer = $(event.target)
   const $parent = $resizer.closest('[data-type = "resizeble"]')
-  const indexColumn = $parent.data.countc
   const cords = $parent.getCords()
-  const cellHTMLCOll = $root.getElementsByClassName('cell')
   const sideProp = typeResize ==='col'? 'bottom':'right'
-  const cellArray = Array.prototype
-      .filter.call(cellHTMLCOll, (el) =>{
-        if (el.dataset.countc === indexColumn) {
-          return el
-        }
-      })
+  const cells = $root.findAll(`[data-coll="${$parent.data.coll}"]`)
   let value
   $resizer.css({
     opacity: '1',
@@ -39,7 +32,9 @@ export function resizeHandler($root, event) {
     if (typeResize === 'col') {
       const style = {width: `${value}px`}
       $parent.css(style)
-      cellArray.forEach(el => $(el).css(style))
+      cells.forEach(el =>{
+        $(el).css(style)
+      })
     } else {
       $parent.css({height: value + 'px'})
     }

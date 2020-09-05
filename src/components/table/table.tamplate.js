@@ -3,12 +3,19 @@ function toChar(_, index) {
   return String.fromCharCode(index + CODED.A)
 }
 
-function toCell(_, i) {
-  return ` <div class="cell" contenteditable data-countC = "${i}"></div>`
+function toCell(row) {
+  return function(_, col) {
+    return ` <div class="cell" 
+        contenteditable 
+        data-coll = "${col}" 
+        data-type = "cell"
+        data-id = ${row}:${col}
+            ></div>`
+  }
 }
 
 function toColumn(char, i) {
-  return ` <div class="column" data-type = "resizeble" data-countC = "${i}">
+  return ` <div class="column" data-type = "resizeble" data-coll = "${i}">
                 ${char}
                 <div class="col-resize" data-resize = "col"></div>
             </div>`
@@ -40,12 +47,12 @@ export function createTable(countRow = 20) {
       .join('')
   rows.push(createRow(null, columns))
 
-  for (let i = 0; i<countRow; i++) {
+  for (let row = 0; row<countRow; row++) {
     const columnsCell = new Array(countColumn)
         .fill('')
-        .map(toCell)
+        .map(toCell(row))
         .join('')
-    rows.push(createRow(i +1, columnsCell))
+    rows.push(createRow(row +1, columnsCell))
   }
 
   return rows.join('')
